@@ -5,8 +5,15 @@ from random import randrange
 
 class PriceSubject(Subject):
 
+    _instance = None
     _state: List[Dict] = []
     _observers: List[Observer] = []
+
+    @staticmethod
+    def instance():
+        if PriceSubject._instance is None:
+            PriceSubject._instance = PriceSubject()
+        return PriceSubject._instance
 
     def attach(self, observer: Observer) -> None:
         self._observers.append(observer)
